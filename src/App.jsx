@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 function App() {
 
   const films = [
@@ -9,14 +11,20 @@ function App() {
     { id: 6, title: 'Pulp Fiction', genre: 'Thriller' },
   ]
 
+  const [movie, setMovie] = useState(films)
+
   return (
     <>
       <main>
         <select class="form-select" aria-label="Default select example">
           <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          {
+            films.map(film => (
+
+              <option value={film.id}>{film.genre}</option>
+
+            ))
+          }
         </select>
         <ul>
 

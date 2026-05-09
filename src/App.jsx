@@ -16,23 +16,27 @@ function App() {
   return (
     <>
       <main>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Open this select menu</option>
-          {
-            films.map(film => (
+        <div className="container">
+          <div className="row mt-4">
+            <select className="form-select" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              {
+                films.map(film => (
 
-              <option value={film.id}>{film.genre}</option>
+                  <option value={film.id}>{film.genre}</option>
 
-            ))
-          }
-        </select>
-        <ul className="list-unstyled">
-          {
-            films.map(film => (
-              <li key={film.id}>{film.title}</li>
-            ))
-          }
-        </ul>
+                ))
+              }
+            </select>
+            <ul className="list-unstyled mt-4">
+              {
+                films.map(film => (
+                  <li key={film.id}>{film.title}</li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
       </main>
     </>
   )

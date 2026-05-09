@@ -26,8 +26,12 @@ function App() {
             ))
           }
         </select>
-        <ul>
-
+        <ul className="list-unstyled">
+          {
+            films.map(film => (
+              <li key={film.id}>{film.title}</li>
+            ))
+          }
         </ul>
       </main>
     </>

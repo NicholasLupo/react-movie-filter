@@ -14,6 +14,24 @@ function App() {
 
   const [movie, setMovie] = useState(films)
   const [previousGenre, setPreviousGenre] = useState('')
+  const [newMovie, setNewMovie] = useState('')
+
+  function addFilm(e) {
+
+    e.preventDefault()
+
+    const nextId = Math.max(...movie.map(film => film.id)) + 1
+
+    setMovie([...movie,
+    {
+      id: nextId,
+      title: newMovie,
+      genre: ''
+    },
+    ]
+    )
+  }
+
 
   useEffect(() => {
     if (!previousGenre) {
@@ -40,15 +58,15 @@ function App() {
           </select>
           <ul className="list-unstyled mt-4">
             {
-              movie.map(movie => (
-                <li key={movie.id}>{movie.title}</li>
+              movie.map(film => (
+                <li key={film.id}>{film.title}</li>
               ))
             }
           </ul>
         </div>
         <div className="row mt-4">
-          <form action="" className="text-center">
-            <input type="text" placeholder="Inserisci un nuovo film" className="m-3" />
+          <form action="" className="text-center" onSubmit={addFilm}>
+            <input type="text" placeholder="Inserisci un nuovo film" className="m-3" value={newMovie} onChange={e => setNewMovie(e.target.value)} />
             <button className="btn btn-primary"> Add </button>
           </form>
         </div>

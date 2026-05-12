@@ -46,6 +46,12 @@ function App() {
             }
           </ul>
         </div>
+        <div className="row mt-4">
+          <form action="" className="text-center">
+            <input type="text" placeholder="Inserisci un nuovo film" className="m-3" />
+            <button className="btn btn-primary"> Add </button>
+          </form>
+        </div>
       </div>
     </main>
   )

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function App() {
 
@@ -11,34 +11,43 @@ function App() {
     { id: 6, title: 'Pulp Fiction', genre: 'Thriller' },
   ]
 
+
   const [movie, setMovie] = useState(films)
+  const [previousGenre, setPreviousGenre] = useState('')
+
+  useEffect(() => {
+    if (!previousGenre) {
+      setMovie(films)
+      return
+    }
+
+    setMovie(films.filter((film) => film.genre === previousGenre))
+  }, [previousGenre])
 
   return (
-    <>
-      <main>
-        <div className="container">
-          <div className="row mt-4">
-            <select className="form-select" aria-label="Default select example">
-              <option selected>Open this select menu</option>
-              {
-                films.map(film => (
+    <main>
+      <div className="container">
+        <div className="row mt-4">
+          <select className="form-select" value={previousGenre} aria-label="Default select example" onChange={e => setPreviousGenre(e.target.value)}>
+            <option value="">Open this select menu</option>
+            {
+              films.map(film => (
 
-                  <option value={film.id}>{film.genre}</option>
+                <option key={film.id} value={film.genre}>{film.genre}</option>
 
-                ))
-              }
-            </select>
-            <ul className="list-unstyled mt-4">
-              {
-                films.map(film => (
-                  <li key={film.id}>{film.title}</li>
-                ))
-              }
-            </ul>
-          </div>
+              ))
+            }
+          </select>
+          <ul className="list-unstyled mt-4">
+            {
+              movie.map(movie => (
+                <li key={movie.id}>{movie.title}</li>
+              ))
+            }
+          </ul>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   )
 }
 
